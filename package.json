@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "bootstrap": "^5.3.3",
     "moment": "^2.30.1",
     "next": "14.2.15",
@@ -21,6 +22,12 @@
     "sass": "^1.79.5",
     "sweetalert2": "^11.14.3",
     "yup": "^1.4.0"
+=======
+    "easygoingeducations": "file:",
+    "next": "14.2.15",
+    "react": "^18",
+    "react-dom": "^18"
+>>>>>>> 6bbbef442ada6de95e8f88339307967223b40959
   },
   "devDependencies": {
     "eslint": "^8",

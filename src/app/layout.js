@@ -1,3 +1,4 @@
+import { Topbar } from "@/components/common/header/topbar";
 import { config } from "@/helpers/config";
 import { montserrat } from "@/helpers/fonts";
 import "@/styles/index.scss";
@@ -13,7 +14,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en" className={montserrat.variable}>
-			<body>{children}</body>
+			<body>
+        <Topbar/>
+        {children}</body>
 		</html>
 	);
 }

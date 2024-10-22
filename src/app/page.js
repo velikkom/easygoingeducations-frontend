@@ -4,6 +4,7 @@ import { Spacer } from "@/components/common/spacer/spacer";
 import React from "react";
 
 import { FeaturedCourses } from "@/components/home/featured-courses";
+import { UpcomingEvents } from "@/components/home/upcoming-events";
 
 const Page = () => {
   return (
@@ -13,6 +14,9 @@ const Page = () => {
       <Welcome />
       <Spacer />
       <FeaturedCourses />
+      <Spacer />
+      <UpcomingEvents />
+      <p>.</p>
       <p>.</p>
       <p>.</p>
       <p>.</p>

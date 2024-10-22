@@ -5,6 +5,7 @@ import React from "react";
 
 import { FeaturedCourses } from "@/components/home/featured-courses";
 import { UpcomingEvents } from "@/components/home/upcoming-events";
+import { MobileApp } from "@/components/home/mobile-app";
 
 const Page = () => {
   return (
@@ -16,6 +17,8 @@ const Page = () => {
       <FeaturedCourses />
       <Spacer />
       <UpcomingEvents />
+      <Spacer/>
+      <MobileApp/>
       <p>.</p>
       <p>.</p>
       <p>.</p>

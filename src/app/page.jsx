@@ -6,6 +6,7 @@ import React from "react";
 import { FeaturedCourses } from "@/components/home/featured-courses";
 import { UpcomingEvents } from "@/components/home/upcoming-events";
 import { MobileApp } from "@/components/home/mobile-app";
+import { ContactMenu } from "@/components/common/footer/contact-menu";
 
 const Page = () => {
   return (
@@ -19,6 +20,8 @@ const Page = () => {
       <UpcomingEvents />
       <Spacer/>
       <MobileApp/>
+      {/* <Spacer />
+      <ContactMenu /> */}
       <p>.</p>
       <p>.</p>
       <p>.</p>

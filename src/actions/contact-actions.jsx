@@ -18,6 +18,8 @@ export const createContactMessageAction = async (prevState, formData) => {
     const res = await createContactMessage(fields);
     const data = await res.json();
 
+    console.log(res);
+    console.log(data);
     if (!res.ok) {
       return response(false, "", data?.validations);
     }
@@ -25,8 +27,6 @@ export const createContactMessageAction = async (prevState, formData) => {
     revalidatePath("/dashboard/contact-message");
 
     return response(true, "Your message was sent successfully", null);
-    console.log(res);
-    console.log(data);
   } catch (err) {
     if (err instanceof YupValidationError) {
       return transformYupErrors(err.inner);

@@ -1,8 +1,18 @@
+import { PageHeader } from '@/components/common/page-header/page-header'
+import { Spacer } from '@/components/common/spacer/spacer'
 import React from 'react'
+import { DashboardNavigation } from '../../components/dashboard/home/dasboard-navigation'
+
 
 const Page = () => {
   return (
-    <div>Page</div>
+    <>
+      <PageHeader/>
+      <Spacer/>
+      <DashboardNavigation/>
+      <Spacer/>
+      
+    </>
   )
 }
 

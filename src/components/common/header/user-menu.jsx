@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Button, Nav, Offcanvas } from "react-bootstrap";
+import { LogoutButton } from "./logout-button";
 
 export const UserMenu = ({ session, userMenu }) => {
   const [show, setShow] = useState(false);
@@ -45,6 +46,10 @@ export const UserMenu = ({ session, userMenu }) => {
                 {item.title}
               </Button>
             ))}
+
+            <LogoutButton setShow={setShow} />
+
+
           </Nav>
         </Offcanvas.Body>
       </Offcanvas>

@@ -1,6 +1,6 @@
 "use server";
 
-import { signIn } from "@/auth";
+import { signIn, signOut } from "@/auth";
 import {
   response,
   transformFormDataToJSON,
@@ -26,4 +26,8 @@ export const loginAction = async (prevState, formData) => {
 
     throw err;
   }
+};
+
+export const logoutAction = async () => {
+  await signOut({redirectTo: "/" });
 };

@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { login } from "./services/auth-service";
+import { getIsTokenValid, getIsUserAuthorized } from "./helpers/auth-helper";
 
 const config = {
   providers: [
@@ -22,51 +23,25 @@ const config = {
     }),
   ],
   callbacks: {
-    /**
-     *  Bu middleware da ayarlandigi sekliyle,
-     *   NextAuth un kapsama alanina giren sayfalara yapilan isteklerden hemen once authorized callback i calisir.
-     *   Bu callback icinde dondurulen true veya false ifadesine gore talep edilen sayfa acilir veya acilmaz.
-     * */
-
+    // middleware da ayarlandigi sekliyle, NextAuth un kapsama alanina giren sayfalara yapilan isteklerden hemen once authorized callback i calisir.
+    // Bu callback icinde dondurulen true veya false ifadesine gore talep edilen sayfa acilir veya acilmaz.
     authorized({ auth, request }) {
-      /**
-       * Kullanıcı nereye gitmek istiyorsa onun yolunu alıyoruz
-       */
       const { pathname } = request.nextUrl;
-
-      /**
-       * Kullanicinin oturumunu kontrol ediyoruz
-       * login olmus mu olmamısmı bunu sorguluyoruz (const isLoggedIn = !!userRole;)
-       * login olmus kullanıcının role bilgisini alıyoruz (const userRole = auth?.user?.role;)
-       * 
-       */
       const userRole = auth?.user?.role;
-      const isLoggedIn = !!userRole;
       const isInLoginPage = pathname.startsWith("/login");
       const isInDashboardPages = pathname.startsWith("/dashboard");
+      const isLoggedIn = getIsTokenValid(auth?.accessToken);
 
-
-      /**
-       * kullanıcı logın mı ( if (isLoggedIn))
-       * gıtmek ıstedıgı sayfaya yonlendır (const url = new URL("/dashboard", request.url);
-          return Response.redirect(url);)
-
-       *  rolebased routing (else if (isInDashboardPages) {
-          // rolebased routing
-          return true;
-        })
-       */
       if (isLoggedIn) {
-
         if (isInLoginPage) {
-
-          const url = new URL("/dashboard", request.url);
-          console.log(url)
+          const url = new URL("dashboard", request.nextUrl.origin);
           return Response.redirect(url);
-          
         } else if (isInDashboardPages) {
-          // rolebased routing
-          return true;
+          const isUserAuthorized = getIsUserAuthorized(userRole, pathname);
+          if (!isUserAuthorized) {
+            const url = new URL("/unauthorized", request.nextUrl.origin);
+            return Response.redirect(url);
+          }
         }
 
         return true;
@@ -77,10 +52,7 @@ const config = {
       return true;
     },
 
-    /**
-     * jwt token a ihtiyac duyulan her yerde bu callback calisir
-     * Sayfalar arası gecislerde calisir
-     */
+    // jwt token a ihtiyac duyulan her yerde bu callback calisir
     async jwt({ token, user }) {
       return { ...token, ...user };
     },
@@ -88,6 +60,9 @@ const config = {
     // session a ihtiyac duyulan her yerde bu callback calisir.
     async session({ session, token }) {
       const { accessToken, user } = token;
+
+      const isTokenValid = getIsTokenValid(accessToken);
+      if (!isTokenValid) return null; // Burasi kullanicinin session ini iptal eder.
 
       session.user = user;
       session.accessToken = accessToken;

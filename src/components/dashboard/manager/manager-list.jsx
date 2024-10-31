@@ -10,7 +10,7 @@ import { ManagerToolbar } from "./manager-toolbar";
 export const ManagerList = ({ data }) => {
   const router = useRouter();
    const { content, size, totalElements, number } = data;
- console.log(data)
+
   const header = (
     <div className="d-flex justify-content-between align-items-center">
       <h2>Managers</h2>

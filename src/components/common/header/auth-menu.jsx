@@ -10,7 +10,7 @@ export const AuthMenu = async () => {
   const role = session?.user?.role;
   const userMenu = role ? userMenuData[role.toLowerCase()] : null;
 
-  console.log(role, userMenu);
+
 
   /**
    * iki durum var

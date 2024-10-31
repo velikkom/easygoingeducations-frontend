@@ -18,10 +18,10 @@ import React from "react";
 import { useFormState } from "react-dom";
 
 export const ManagerEditForm = ({ user }) => {
-    
   const [state, dispatch] = useFormState(updateManagerAction, initialResponse);
   const router = useRouter();
 
+  console.log(state);
   if (state.message) {
     swAlert(state.message, state.ok ? "success" : "error");
     if (state.ok) router.push("/dashboard/manager");

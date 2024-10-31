@@ -18,8 +18,7 @@ export const createContactMessageAction = async (prevState, formData) => {
     const res = await createContactMessage(fields);
     const data = await res.json();
 
-    console.log(res);
-    console.log(data);
+   ;
     if (!res.ok) {
       return response(false, "", data?.validations);
     }

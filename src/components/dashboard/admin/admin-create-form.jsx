@@ -20,7 +20,7 @@ import { useFormState } from "react-dom";
 export const AdminCreateForm = () => {
   const [state, dispatch] = useFormState(createAdminAction, initialResponse);
 
-  console.log(state);
+  
 
   const router = useRouter(); //formu basarılı kaydedince dashboarde gitmek için
 

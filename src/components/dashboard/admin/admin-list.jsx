@@ -3,16 +3,13 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AdminToolbar } from "./admin-toolbar";
-import Link from "next/link";
 
 export const AdminList = ({ data }) => {
   const router = useRouter();
   const { content, size, totalElements, number } = data;
-
- 
 
   const header = (
     <div className="d-flex justify-content-between align-items-center">

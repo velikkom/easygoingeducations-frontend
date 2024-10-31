@@ -4,14 +4,14 @@ import { AssistantCreateForm } from "@/components/dashboard/assistant-manager/as
 import React from "react";
 
 const Page = () => {
-  return (
-    <>
-      <PageHeader title="New Assistant" />
-      <Spacer />
-      <AssistantCreateForm />
-      <Spacer />
-    </>
-  );
+	return (
+		<>
+			<PageHeader title="New Assistant" />
+			<Spacer />
+			<AssistantCreateForm/>
+			<Spacer />
+		</>
+	);
 };
 
 export default Page;

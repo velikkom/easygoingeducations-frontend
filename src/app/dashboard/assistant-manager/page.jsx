@@ -5,21 +5,21 @@ import { getAllAssistantsByPage } from "@/services/assistant-service";
 import React from "react";
 
 const Page = async ({ searchParams }) => {
-  const { page } = searchParams;
+	const { page } = searchParams;
 
-  const res = await getAllAssistantsByPage(page);
-  const data = await res.json();
+	const res = await getAllAssistantsByPage(page);
+	const data = await res.json();
 
-  if (!res.ok) throw new Error(data.message);
+	if (!res.ok) throw new Error(data.message);
 
-  return (
-    <>
-      <PageHeader title="Assistants" />
-      <Spacer />
-      <AssistantList data={data} />
-      <Spacer />
-    </>
-  );
+	return (
+		<>
+			<PageHeader title="Assistants" />
+			<Spacer />
+			<AssistantList data={data} />
+			<Spacer />
+		</>
+	);
 };
 
 export default Page;

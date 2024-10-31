@@ -4,23 +4,22 @@ import { AdminList } from "@/components/dashboard/admin/admin-list";
 import { getAllAdminsByPage } from "@/services/admin-service";
 import React from "react";
 
-const Page = async ({ searchParams }) => {
-  
-  const { page } = searchParams;
+const Page = async ({searchParams}) => {
+	const {page} = searchParams;
 
-  const res = await getAllAdminsByPage(page);
-  const data = await res.json();
+	const res = await getAllAdminsByPage(page);
+	const data = await res.json();
 
-  if (!res.ok) throw new Error(data.message);
+	if (!res.ok) throw new Error(data.message);
 
-  return (
-    <>
-      <PageHeader title="Admins" />
-      <Spacer />
-      <AdminList data={data} />
-      <Spacer />
-    </>
-  );
+	return (
+		<>
+			<PageHeader title="Admins" />
+			<Spacer />
+			<AdminList data={data} />
+			<Spacer />
+		</>
+	);
 };
 
 export default Page;

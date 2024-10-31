@@ -7,11 +7,11 @@ import { MaskedInput } from "./masked-input";
 import { FormContainer } from "./form-container";
 
 export {
-  TextInput,
-  PasswordInput,
-  SubmitButton,
-  DateInput,
-  SelectInput,
-  MaskedInput,
-  FormContainer,
+	TextInput,
+	PasswordInput,
+	SubmitButton,
+	DateInput,
+	SelectInput,
+	MaskedInput,
+	FormContainer,
 };

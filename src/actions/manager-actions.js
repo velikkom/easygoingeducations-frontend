@@ -1,85 +1,82 @@
 "use server";
 
 import {
-  response,
-  transformFormDataToJSON,
-  transformYupErrors,
-  YupValidationError,
+	response,
+	transformFormDataToJSON,
+	transformYupErrors,
+	YupValidationError,
 } from "@/helpers/form-validation";
 import { ManagerSchema } from "@/helpers/schemas/manager-schema";
-import {
-  createManager,
-  deleteManager,
-  updateManager,
-} from "@/services/manager-service";
+import { createManager, deleteManager, updateManager } from "@/services/manager-service";
 import { revalidatePath } from "next/cache";
 
 export const createManagerAction = async (prevState, formData) => {
-  try {
-    const fields = transformFormDataToJSON(formData);
-    ManagerSchema.validateSync(fields, { abortEarly: false });
+	try {
+		const fields = transformFormDataToJSON(formData);
+		ManagerSchema.validateSync(fields, { abortEarly: false });
 
-    const res = await createManager(fields);
-    const data = await res.json();
+		const res = await createManager(fields);
+		const data = await res.json();
 
-    if (!res.ok) {
-      return response(false, data?.message, data?.validations);
-    }
+		if (!res.ok) {
+			return response(false, data?.message, data?.validations);
+		}
 
-    revalidatePath("/dashboard/manager");
+		revalidatePath("/dashboard/manager");
 
-    return response(true, data?.message, null);
-  } catch (err) {
-    if (err instanceof YupValidationError) {
-      return transformYupErrors(err.inner);
-    }
+		return response(true, data?.message, null);
+	} catch (err) {
+		if (err instanceof YupValidationError) {
+			return transformYupErrors(err.inner);
+		}
 
-    throw err;
-  }
+		throw err;
+	}
 };
 
 export const updateManagerAction = async (prevState, formData) => {
-  if (!formData.get("id"))
-    throw new Error("Id is missing in update manager action!");
 
-  try {
-    const fields = transformFormDataToJSON(formData);
-    ManagerSchema.validateSync(fields, { abortEarly: false });
+	if(!formData.get("id")) throw new Error("Id is missing in update manager action!");
 
-    const res = await updateManager(fields);
-    const data = await res.json();
 
-    if (!res.ok) {
-      return response(false, data?.message, data?.validations);
-    }
+	try {
+		const fields = transformFormDataToJSON(formData);
+		ManagerSchema.validateSync(fields, { abortEarly: false });
 
-    revalidatePath("/dashboard/manager");
+		const res = await updateManager(fields);
+		const data = await res.json();
 
-    return response(true, data?.message, null);
-  } catch (err) {
-    if (err instanceof YupValidationError) {
-      return transformYupErrors(err.inner);
-    }
+		if (!res.ok) {
+			return response(false, data?.message, data?.validations);
+		}
 
-    throw err;
-  }
+		revalidatePath("/dashboard/manager");
+
+		return response(true, data?.message, null);
+	} catch (err) {
+		if (err instanceof YupValidationError) {
+			return transformYupErrors(err.inner);
+		}
+
+		throw err;
+	}
 };
 
 export const deleteManagerAction = async (id) => {
-  if (!id) throw new Error("Id is missing!");
+	if (!id) throw new Error("Id is missing!");
 
-  try {
-    const res = await deleteManager(id);
-    const data = await res.json();
+	try {
+		const res = await deleteManager(id);
+		const data = await res.json();
 
-    if (!res.ok) {
-      return response(false, data?.message, null);
-    }
+		if (!res.ok) {
+			return response(false, data?.message, null);
+		}
 
-    revalidatePath("/dashboard/manager");
+		revalidatePath("/dashboard/manager");
 
-    return response(true, data?.message, null);
-  } catch (err) {
-    return response(false, err.message, null);
-  }
+		return response(true, data?.message, null);
+	} catch (err) {
+		return response(false, err.message, null);
+	}
 };

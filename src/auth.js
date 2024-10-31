@@ -57,10 +57,13 @@ const config = {
         })
        */
       if (isLoggedIn) {
+
         if (isInLoginPage) {
+
           const url = new URL("/dashboard", request.url);
           console.log(url)
           return Response.redirect(url);
+          
         } else if (isInDashboardPages) {
           // rolebased routing
           return true;

@@ -7,19 +7,19 @@ import { UpcomingEvents } from "@/components/home/upcoming-events";
 import React from "react";
 
 const Page = () => {
-	return (
-		<>
-			<Slider />
-			<Spacer/>
-			<Welcome/>
-			<Spacer/>
-			<FeaturedCourses/>
-			<Spacer/>
-			<UpcomingEvents/>
-			<Spacer/>
-			<MobileApp/>
-		</>
-	);
+  return (
+    <>
+      <Slider />
+      <Spacer />
+      <Welcome />
+      <Spacer />
+      <FeaturedCourses />
+      <Spacer />
+      <UpcomingEvents />
+      <Spacer />
+      <MobileApp />
+    </>
+  );
 };
 
 export default Page;

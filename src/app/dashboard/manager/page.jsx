@@ -5,21 +5,21 @@ import { getAllManagersByPage } from "@/services/manager-service";
 import React from "react";
 
 const Page = async ({ searchParams }) => {
-	const { page } = searchParams;
+  const { page } = searchParams;
 
-	const res = await getAllManagersByPage(page);
-	const data = await res.json();
+  const res = await getAllManagersByPage(page);
+  const data = await res.json();
 
-	if (!res.ok) throw new Error(data.message);
+  if (!res.ok) throw new Error(data.message);
 
-	return (
-		<>
-			<PageHeader title="Managers" />
-			<Spacer />
-			<ManagerList data={data} />
-			<Spacer />
-		</>
-	);
+  return (
+    <>
+      <PageHeader title="Managers" />
+      <Spacer />
+      <ManagerList data={data} />
+      <Spacer />
+    </>
+  );
 };
 
 export default Page;

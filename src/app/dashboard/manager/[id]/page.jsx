@@ -5,19 +5,19 @@ import { getManagerById } from "@/services/manager-service";
 import React from "react";
 
 const Page = async ({ params }) => {
-	const res = await getManagerById(params.id);
-	const data = await res.json();
+  const res = await getManagerById(params.id);
+  const data = await res.json();
 
-	if (!res.ok) throw new Error(data?.message);
+  if (!res.ok) throw new Error(data?.message);
 
-	return (
-		<>
-			<PageHeader title="Edit Manager" />
-			<Spacer />
-			<ManagerEditForm user={data?.object} />
-			<Spacer />
-		</>
-	);
+  return (
+    <>
+      <PageHeader title="Edit Manager" />
+      <Spacer />
+      <ManagerEditForm user={data?.object} />
+      <Spacer />
+    </>
+  );
 };
 
 export default Page;

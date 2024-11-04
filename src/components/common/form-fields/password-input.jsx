@@ -3,47 +3,47 @@ import React, { useState } from "react";
 import { FloatingLabel, FormControl, InputGroup } from "react-bootstrap";
 
 export const PasswordInput = ({
-	name,
-	label,
-	errorMessage,
-	className,
-	iconBefore,
-	...rest
+  name,
+  label,
+  errorMessage,
+  className,
+  iconBefore,
+  ...rest
 }) => {
-	const [type, setType] = useState("password");
+  const [type, setType] = useState("password");
 
-	const handleClick = () => {
-		setType((prev) => (prev === "password" ? "text" : "password"));
-	};
+  const handleClick = () => {
+    setType((prev) => (prev === "password" ? "text" : "password"));
+  };
 
-	return (
-		<InputGroup className={`${className} ${errorMessage ? "mb-5" : ""}`}>
-			{!!iconBefore && (
-				<InputGroup.Text>
-					<i className={`pi pi-${iconBefore}`}></i>
-				</InputGroup.Text>
-			)}
+  return (
+    <InputGroup className={`${className} ${errorMessage ? "mb-5" : ""}`}>
+      {!!iconBefore && (
+        <InputGroup.Text>
+          <i className={`pi pi-${iconBefore}`}></i>
+        </InputGroup.Text>
+      )}
 
-			<FloatingLabel controlId={name} label={label}>
-				<FormControl
-					name={name}
-					placeholder={label}
-					type={type}
-					isInvalid={!!errorMessage}
-					{...rest}
-				/>
-				<FormControl.Feedback type="invalid" style={{ position: "absolute" }}>
-					{errorMessage}
-				</FormControl.Feedback>
-			</FloatingLabel>
+      <FloatingLabel controlId={name} label={label}>
+        <FormControl
+          name={name}
+          placeholder={label}
+          type={type}
+          isInvalid={!!errorMessage}
+          {...rest}
+        />
+        <FormControl.Feedback type="invalid" style={{ position: "absolute" }}>
+          {errorMessage}
+        </FormControl.Feedback>
+      </FloatingLabel>
 
-			<InputGroup.Text onClick={handleClick}>
-				{type === "password" ? (
-					<i className="pi pi-eye"></i>
-				) : (
-					<i className="pi pi-eye-slash"></i>
-				)}
-			</InputGroup.Text>
-		</InputGroup>
-	);
+      <InputGroup.Text onClick={handleClick}>
+        {type === "password" ? (
+          <i className="pi pi-eye"></i>
+        ) : (
+          <i className="pi pi-eye-slash"></i>
+        )}
+      </InputGroup.Text>
+    </InputGroup>
+  );
 };

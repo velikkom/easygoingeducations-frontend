@@ -19,3 +19,12 @@ export const transformYupErrors = (errors) => {
 
   return response(false, "", errObject);
 };
+
+export const isStringArray = (sr) => {
+  try {
+    const arr = JSON.parse(sr);
+    return Array.isArray(arr) && arr.length > 0;
+  } catch {
+    return false;
+  }
+};

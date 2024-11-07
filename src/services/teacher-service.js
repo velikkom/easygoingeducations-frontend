@@ -1,4 +1,5 @@
 import {
+  ADVISOR_GET_ALL_API,
   TEACHER_ASSIGN_PROGRAM_API,
   TEACHER_CREATE_API,
   TEACHER_DELETE_API,
@@ -24,6 +25,12 @@ export const getAllTeachersByPage = async (
 
 export const getAllTeachers = async () => {
   return fetch(`${TEACHER_GET_ALL_API}`, {
+    headers: await getAuthHeader(),
+  });
+};
+
+export const getAllAdvisorTeachers = async () => {
+  return fetch(`${ADVISOR_GET_ALL_API}`, {
     headers: await getAuthHeader(),
   });
 };
@@ -58,6 +65,8 @@ export const deleteTeacher = async (id) => {
 };
 
 export const assignProgramToTeacher = async (payload) => {
+  console.log(JSON.stringify(payload));
+
   return fetch(`${TEACHER_ASSIGN_PROGRAM_API}`, {
     method: "POST",
     headers: await getAuthHeader(),

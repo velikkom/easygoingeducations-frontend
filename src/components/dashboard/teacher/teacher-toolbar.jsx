@@ -24,14 +24,14 @@ export const TeacherToolbar = (row) => {
 	};
 
 	return (
-		<>
-			<Button variant="secondary" onClick={handleEdit}>
-				<i className="pi pi-file-edit"></i>
-			</Button>
+		<div className="d-flex gap-2 justify-content-end">
+		<Button variant="secondary" onClick={handleEdit}>
+			<i className="pi pi-file-edit"></i>
+		</Button>
 
-			<Button variant="secondary" className="ms-2" onClick={handleDelete}>
-				<i className="pi pi-trash"></i>
-			</Button>
-		</>
+		<Button variant="secondary" onClick={handleDelete}>
+			<i className="pi pi-trash"></i>
+		</Button>
+	</div>
 	);
 };

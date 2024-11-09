@@ -13,7 +13,7 @@ export const StudentInfoList = ({ data }) => {
   const router = useRouter();
 
   const header = (
-    <div className="d-fles justify-content-between align-items-center">
+    <div className="d-flex justify-content-between align-items-center">
       <h2>Student Info</h2>
       <Link href={"/dashboard/student-info/new"} className="btn btn-primary">
         <i className="pi pi-plus"></i> New
